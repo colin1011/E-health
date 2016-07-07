@@ -1,0 +1,16 @@
+{
+  "name": "e-health",
+  "version": "1.0.0",
+  "description": "Heart rate monitoring system.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Colin Dsouza",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4",
+    "mongodb": "^2.1.12"
+  }
+}

@@ -1,0 +1,65 @@
+<html>
+<head>
+<script src="jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("button").click(function(){
+	
+	/*
+	$.get("https://e-health-colin1011.c9users.io/records/?name=Colin").done(function (data) {
+	    var sdata=JSON.stringify(data);
+	   
+	    for(var i=0;i<sdata.length;i++)
+	    {
+	        if(i==0 || i==(sdata.length-1))
+	        {
+	            sdata[i]=" ";
+	        }
+	    }
+	    var jdata=jQuery.parseJSON(sdata);
+	    alert(typeof(data));
+	    $('#div4').html(sdata);
+    
+});
+
+*/
+	
+	var url="https://e-health-colin1011.c9users.io/records/?name=Colin";
+        $.getJSON(url, function(data, status){
+			//console.log(data);
+			var sdata=JSON.stringify(data,null,4);
+			alert(data[0].name);
+			$('#div4').html(sdata);
+			
+            //var da=JSON.parse(data);
+            //alert("Name: " + da.name+ "Age" + da.age + "Heart-Rate"+ da.heart-rate + "\nStatus: "   + status);
+        });
+	
+	
+/*
+	$.ajax({
+    url: "https://e-health-colin1011.c9users.io/?name=Colin",
+ 
+    // The name of the callback parameter, as specified by the YQL service
+    //jsonp: "callback",
+ 
+    // Tell jQuery we're expecting JSONP
+    dataType: "json",
+	crossDomain: true,
+    
+	// Work with the response
+    success: function( response ) {
+        console.log( response ); // server response
+    }
+	
+});
+*/
+    });
+});
+</script>
+</head>
+<body>
+<button>Send an HTTP GET request to a page and get the result back</button>
+<div id='div4'></div>
+</body>
+</html>

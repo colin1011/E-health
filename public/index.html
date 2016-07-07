@@ -1,0 +1,172 @@
+<!--Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>E-Health</title>
+<!-- Custom Theme files -->
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
+<!-- Custom Theme files -->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+
+<!--Google Fonts-->
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+<!--Google Fonts-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<script src="jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+  <script>
+$(document).ready(function(){
+    
+    $("#formid").on('submit',function(e){
+	e.preventDefault();
+	
+	    var query=document.getElementById("qtext").value;
+	    //alert("query="+query);
+	    var url="https://e-health-colin1011.c9users.io/records/?name=" + query;
+	    //alert(url);
+	    
+	    $.get(url).done(function (data) {
+	    var len=data.length;
+	    console.log(len);
+	    len=len-1;
+	    //alert(data[0].name);
+	    var timestamp = data[len]._id.toString().substring(0,8);
+	    var date = new Date( parseInt( timestamp, 16 ) * 1000 );
+	    var date1=date.toLocaleString();
+			$('#idi').html(date1);
+			$('#name').html(data[len].name);
+			$('#age').html(data[len].age);
+			$('#sex').html(data[len].sex);
+			$('#temperature').html(data[len].temp);
+			$('#bloodgroup').html(data[len].bloodgroup);
+			$('#hrate').html(data[len].hrate);
+			$('#feedback').html(data[len].feedback);
+			$('#iframe').attr('src', data[len].src);
+			//document.getElementById('calendar').src = ;
+
+	    
+	    
+    
+});
+	    
+	/*
+        $.getJSON(url, function(data, status){
+			//console.log(data);
+			//var sdata=JSON.stringify(data,null,4);
+			alert(data[0].name);
+			$('#idi').html(data[0]._id);
+			$('#name').html(data[0].name);
+			$('#age').html(data[0].age);
+			$('#hrate').html(data[0].heart-rate);
+			
+			
+            
+        });
+	
+	*/
+
+    });
+});
+function openNav() {
+    document.getElementById("myNav").style.height = "100%";
+}
+
+function closeNav() {
+    document.getElementById("myNav").style.height = "0%";
+}
+</script>
+</head>
+<body>
+
+
+
+
+
+
+<!-- The overlay -->
+<div id="myNav" class="overlay">
+
+  <!-- Button to close the overlay navigation -->
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+  <!-- Overlay content -->
+  <div class="overlay-content">
+    <div>
+    <iframe id='iframe' width="900" height="450" frameborder="0" scrolling="no" src="https://plot.ly/~Vaibhav18/6.embed"></iframe>
+</div>
+
+  </div>
+
+</div>
+
+<!-- Use any element to open/show the overlay navigation menu -->
+<span onclick="openNav()">open</span>
+
+
+
+
+
+
+<div  id='crap' class="container">
+  
+                                                                                     
+<div class="table-responsive">          
+  <table class="table table-inverse">
+    <thead>
+      <tr>
+        <th>Time Stamp</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Sex</th>
+        <th>BloodGroup</th>
+        <th>Heart-Rate</th>
+        <th>Temperature</th>
+        <th>ECG</th>
+        <th>Feedback</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><div  id='idi'></div></td>
+        <td><div  id='name'></div></td>
+        <td><div  id='age'></div></td>
+        <td><div  id='sex'></div></td>
+        <td><div  id='bloodgroup'></div></td>
+        <td><div  id='hrate'></div></td>
+        <td><div  id='temperature'></div></td>
+        <td><div  id='ecg'><button type="button" onclick="openNav()" class="btn btn-primary">ECG</button></div></td>
+        <td><div  id='feedback'></div></td>
+      </tr>
+    </tbody>
+  </table>
+</div> 
+</div>
+
+
+
+
+
+<!--search start here-->
+<div class="search">
+	<i> </i>
+	<div class="s-bar">
+	   <form id='formid'>
+		<input id='qtext' type="text" value="Search Patients" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search Patients';}">
+		<input id='button' type="submit"  value="Search" />
+	  </form>
+	</div>
+	
+</div>
+<!--search end here-->	
+	
+</body>
+</html>
